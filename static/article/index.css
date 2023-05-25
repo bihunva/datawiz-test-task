@@ -27,3 +27,9 @@
 .column-chart path.animate {
   transform: scaleY(1);
 }
+
+.last-articles {
+    display: flex;
+    padding: 0 48px;
+    column-gap: 1rem;
+}
