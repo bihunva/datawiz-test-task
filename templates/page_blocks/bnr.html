@@ -10,19 +10,20 @@
     </div>
 </div>
 
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const obj = document.getElementById('chart');
-        obj.onload = function () {
-            const svgDoc = obj.contentDocument;
-            const path = svgDoc.querySelector('.Line');
-            const length = path.getTotalLength();
-            path.style.strokeDasharray = length;
-            path.style.strokeDashoffset = length;
+        const obj = document.getElementById('chart')
 
-            gsap.to(path, {strokeDashoffset: 0, duration: 4, ease: "power2.out"});
-        };
-    });
+        obj.onload = function () {
+            const svgDoc = obj.contentDocument
+            const path = svgDoc.querySelector('.Line')
+            const length = path.getTotalLength()
+            path.style.strokeDasharray = length
+            path.style.strokeDashoffset = length
+
+            gsap.to(path, {strokeDashoffset: 0, duration: 4, ease: 'power2.out'})
+        }
+    })
 </script>
