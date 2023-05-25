@@ -6,20 +6,30 @@
 
 
 {% block content %}
-<div class="p-4">
-  <input type="hidden" id="post-id" value="{{ object.id }}" />
-  <div>
-    <div class="blog-post p-5">
-      <h1>{{ object.title }}</h1>
-      <hr />
-      <p class="blog-post-meta text-secondary">{{ post.created|date:"d.m.Y" }} by {{ post.author }}</p>
-      <p>{{ object.body|safe }}</p>
-      {% like_btn %}
+    <div class="p-4">
+        <input type="hidden" id="post-id" value="{{ object.id }}"/>
+        <section>
+            <div class="blog-post p-5">
+                <h1>{{ object.title }}</h1>
+                <hr/>
+                <p class="blog-post-meta text-secondary">{{ post.created|date:"d.m.Y" }} by {{ post.author }}</p>
+                <p>{{ object.body|safe }}</p>
+                {% like_btn %}
+            </div>
+        </section>
+
+        {% include 'components/comments.html' %}
+
+        <section class="last-articles">
+            {% for last_article in last_articles %}
+                <div class="card-body card">
+                    <h2 class="card-title">{{ last_article.title }}</h2>
+                    <p class="text-secondary">{{ last_article.created|date:"d.m.Y" }} by {{ post.author }}</p>
+                    <p class="card-text">{{ last_article.body|safe|truncatewords_html:15 }}</p>
+                    <a href="{% url 'post_detail' last_article.slug %}" class="btn btn-primary">Read More</a>
+                </div>
+            {% endfor %}
+        </section>
     </div>
-  </div>
-  {% include 'components/comments.html' %}
-  <!-- render last_articles here -->
 
-</div>
-
-{% endblock content%}
+{% endblock content %}
